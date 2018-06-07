@@ -14,6 +14,7 @@ namespace Brendaim
 
         public Brendaim()
         {
+            //Hello World!
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
         }
