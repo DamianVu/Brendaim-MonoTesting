@@ -19,20 +19,24 @@ namespace Brendaim
            //Nice friendly comment :)
         MouseState currentMouseState;
         MouseState previousMouseState;
+        
 
         public Brendaim()
         {
             //Hello World!
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            graphics.PreferredBackBufferWidth = 1600;  // set this value to the desired width of your window
+            graphics.PreferredBackBufferHeight = 900;   // set this value to the desired height of your window
+            graphics.ApplyChanges();
         }
 
 
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
             Vector2 playerPosition = new Vector2(GraphicsDevice.Viewport.TitleSafeArea.X, GraphicsDevice.Viewport.TitleSafeArea.Y + GraphicsDevice.Viewport.TitleSafeArea.Height / 2);
+
             player = new Player(Content.Load<Texture2D>("Sprites/bob"), playerPosition, 100);
             base.Initialize();
         }
@@ -74,22 +78,29 @@ namespace Brendaim
 
         private void playerUpdate(GameTime gameTime)
         {
-            if (currentKeyboardState.IsKeyDown(Keys.A) || currentKeyboardState.IsKeyDown(Keys.Left))
-            {
-                player.Position.X -= player.Speed;
-                player.FacingRight = false;
-            }
-            if (currentKeyboardState.IsKeyDown(Keys.D) || currentKeyboardState.IsKeyDown(Keys.Right))
-            {
-                player.Position.X += player.Speed;
-                player.FacingRight = true;
-            }
-            if (currentKeyboardState.IsKeyDown(Keys.W) || currentKeyboardState.IsKeyDown(Keys.Up))
-                player.Position.Y -= player.Speed;
-            if (currentKeyboardState.IsKeyDown(Keys.S) || currentKeyboardState.IsKeyDown(Keys.Down))
-                player.Position.Y += player.Speed;
+            
+                if (currentKeyboardState.IsKeyDown(Keys.A) || currentKeyboardState.IsKeyDown(Keys.Left))
+                {
+                    //player.Velocity.X -= player.Speed;
+                    //if (player.Velocity.X < -4)
+                    //    player.Velocity.X = -4;
+                    player.Position.X -= player.Speed;
+                    player.FacingRight = false;
+                }
+                if (currentKeyboardState.IsKeyDown(Keys.D) || currentKeyboardState.IsKeyDown(Keys.Right))
+                {
+                    //player.Velocity.X += player.Speed;
+                    //if (player.Velocity.X > 4)
+                    //    player.Velocity.X = 4;
+                    player.Position.X += player.Speed;
+                    player.FacingRight = true;
+                }
+                if (currentKeyboardState.IsKeyDown(Keys.W) || currentKeyboardState.IsKeyDown(Keys.Up))
+                    player.Position.Y -= player.Speed;
 
-
+                if (currentKeyboardState.IsKeyDown(Keys.S) || currentKeyboardState.IsKeyDown(Keys.Down))
+                    player.Position.Y += player.Speed;
+                
         }
         
         protected override void Draw(GameTime gameTime)

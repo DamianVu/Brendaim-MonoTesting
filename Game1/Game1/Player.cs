@@ -12,7 +12,12 @@ namespace Brendaim
         public int Width { get; set; }
         public int Height { get; set; }
         public Vector2 Position;
+        public Vector2 Velocity;
+        public Vector2 Acceleration;
         public float Speed { get; set; }
+        public enum PlayerState { MOVING, JUMPING, FALLING };
+
+        public int State;
 
         public bool FacingRight;
 
@@ -20,9 +25,12 @@ namespace Brendaim
         {
             PlayerTexture = texture;
             Position = position;
+            Velocity = new Vector2(0, 0);
+            Acceleration = new Vector2(0, 0);
             Health = hp;
-            Speed = 5.0f;
+            Speed = 8f;
             FacingRight = true;
+            State = (int)PlayerState.MOVING;
         }
 
         public void Update()
