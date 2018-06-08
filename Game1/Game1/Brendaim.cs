@@ -16,7 +16,7 @@ namespace Brendaim
 
         KeyboardState currentKeyboardState;
         KeyboardState previousKeyboardState;
-
+           //Nice friendly comment :)
         MouseState currentMouseState;
         MouseState previousMouseState;
 
