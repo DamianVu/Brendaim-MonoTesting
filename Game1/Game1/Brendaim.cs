@@ -12,6 +12,13 @@ namespace Brendaim
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        Player player;
+
+        KeyboardState currentKeyboardState;
+        KeyboardState previousKeyboardState;
+           //Nice friendly comment :)
+        MouseState currentMouseState;
+        MouseState previousMouseState;
 
         public Brendaim()
         {
@@ -25,6 +32,8 @@ namespace Brendaim
         {
             // TODO: Add your initialization logic here
 
+            Vector2 playerPosition = new Vector2(GraphicsDevice.Viewport.TitleSafeArea.X, GraphicsDevice.Viewport.TitleSafeArea.Y + GraphicsDevice.Viewport.TitleSafeArea.Height / 2);
+            player = new Player(Content.Load<Texture2D>("Sprites/bob"), playerPosition, 100);
             base.Initialize();
         }
 
@@ -50,16 +59,52 @@ namespace Brendaim
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
+            previousKeyboardState = currentKeyboardState;
+            previousMouseState = currentMouseState;
+
+            currentKeyboardState = Keyboard.GetState();
+            currentMouseState = Mouse.GetState();
+
+
+            playerUpdate(gameTime);
+
 
             base.Update(gameTime);
+        }
+
+        private void playerUpdate(GameTime gameTime)
+        {
+            if (currentKeyboardState.IsKeyDown(Keys.A) || currentKeyboardState.IsKeyDown(Keys.Left))
+            {
+                player.Position.X -= player.Speed;
+                player.FacingRight = false;
+            }
+            if (currentKeyboardState.IsKeyDown(Keys.D) || currentKeyboardState.IsKeyDown(Keys.Right))
+            {
+                player.Position.X += player.Speed;
+                player.FacingRight = true;
+            }
+            if (currentKeyboardState.IsKeyDown(Keys.W) || currentKeyboardState.IsKeyDown(Keys.Up))
+                player.Position.Y -= player.Speed;
+            if (currentKeyboardState.IsKeyDown(Keys.S) || currentKeyboardState.IsKeyDown(Keys.Down))
+                player.Position.Y += player.Speed;
+
+
         }
         
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+
+
+            spriteBatch.Begin();
+
+            player.Draw(spriteBatch);
+
+            spriteBatch.End();
+
+
 
             base.Draw(gameTime);
         }
