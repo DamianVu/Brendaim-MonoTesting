@@ -6,6 +6,7 @@ namespace Brendaim
 {
     public class Player
     {
+        //Friendly! :)
         public Texture2D PlayerTexture { get; set; }
         public int Health { get; set; }
         public int Width { get; set; }
