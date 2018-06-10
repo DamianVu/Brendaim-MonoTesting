@@ -81,17 +81,11 @@ namespace Brendaim
             
                 if (currentKeyboardState.IsKeyDown(Keys.A) || currentKeyboardState.IsKeyDown(Keys.Left))
                 {
-                    //player.Velocity.X -= player.Speed;
-                    //if (player.Velocity.X < -4)
-                    //    player.Velocity.X = -4;
                     player.Position.X -= player.Speed;
                     player.FacingRight = false;
                 }
                 if (currentKeyboardState.IsKeyDown(Keys.D) || currentKeyboardState.IsKeyDown(Keys.Right))
                 {
-                    //player.Velocity.X += player.Speed;
-                    //if (player.Velocity.X > 4)
-                    //    player.Velocity.X = 4;
                     player.Position.X += player.Speed;
                     player.FacingRight = true;
                 }
