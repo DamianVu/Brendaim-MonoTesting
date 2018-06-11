@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Brendaim.Menus;
 
 namespace Brendaim
 {
@@ -19,7 +20,7 @@ namespace Brendaim
            //Nice friendly comment :)
         MouseState currentMouseState;
         MouseState previousMouseState;
-        
+        private Menu TestMenu;
 
         public Brendaim()
         {
@@ -38,6 +39,8 @@ namespace Brendaim
             Vector2 playerPosition = new Vector2(GraphicsDevice.Viewport.TitleSafeArea.X, GraphicsDevice.Viewport.TitleSafeArea.Y + GraphicsDevice.Viewport.TitleSafeArea.Height / 2);
 
             player = new Player(Content.Load<Texture2D>("Sprites/bob"), playerPosition, 100);
+
+            TestMenu = new Menu();
             base.Initialize();
         }
 
@@ -106,6 +109,8 @@ namespace Brendaim
             spriteBatch.Begin();
 
             player.Draw(spriteBatch);
+
+            TestMenu.Draw(spriteBatch);
 
             spriteBatch.End();
 
